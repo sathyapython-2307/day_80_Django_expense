@@ -2,10 +2,12 @@ services:
   - type: web
     name: personal-expense-tracker
     env: python
+    plan: free  
+    region: singapore 
     buildCommand: |
       pip install -r requirements.txt
       python manage.py collectstatic --noinput
-    startCommand: gunicorn expense_project.wsgi:application --workers 4
+    startCommand: gunicorn expense_project.wsgi:application --workers=4 --timeout 120
     envVars:
       - key: DJANGO_SETTINGS_MODULE
         value: expense_project.settings
@@ -17,3 +19,5 @@ services:
         value: 3.11.9
       - key: DISABLE_COLLECTSTATIC
         value: "0"
+      - key: DATABASE_URL
+        generateValue: true  
