@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Dashboard</h2>
+<p>Total this month: ₹{{ total }}</p>
+<ul>
+    {% for c in by_category %}
+        <li>{{ c.category }}: ₹{{ c.total }}</li>
+    {% endfor %}
+</ul>
+<table border="1">
+    <tr><th>Title</th><th>Amount</th><th>Category</th><th>Date</th><th>Action</th></tr>
+    {% for e in expenses %}
+    <tr>
+        <td>{{ e.title }}</td><td>₹{{ e.amount }}</td><td>{{ e.category }}</td><td>{{ e.date }}</td>
+        <td>
+            <a href="{% url 'edit_expense' e.id %}">Edit</a> |
+            <a href="{% url 'delete_expense' e.id %}">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
