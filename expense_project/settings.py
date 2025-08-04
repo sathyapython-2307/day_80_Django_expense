@@ -4,14 +4,11 @@ import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.environ['SECRET_KEY']  # Remove default value for production
+SECRET_KEY ='django-insecure-(s8-vp4rfbp5(r6%l@rqmx^nqs!(#x2k8q=94sfsw$f^^pg@8_'
 
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = [
-    os.environ.get('RENDER_EXTERNAL_HOSTNAME', 'localhost'),
-    '127.0.0.1',  # For local testing
-]
+ALLOWED_HOSTS = ['.onrender.com']
 
 INSTALLED_APPS = [
     'tracker',
